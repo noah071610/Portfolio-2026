@@ -19,10 +19,6 @@ export const smooreExperienceData = [
   },
   {
     category: portfolio_tags.achieve,
-    descriptions: ["홈페이지 리뉴얼 배포 후 MAU 200% 증가"],
-  },
-  {
-    category: portfolio_tags.achieve,
     descriptions: [
       "다른 팀원이 눈치채지 못한 SEO 이슈에 대해 자발적으로 대처하고 최적화한 경험. Google search console에서 일일 평균 클릭 수 1000% 상승",
     ],
@@ -39,22 +35,20 @@ export const smooreExperienceData = [
   },
   {
     category: portfolio_tags.experience,
-    descriptions: ["대규모 SaaS 서버를 무중단 리팩토링했던 경험."],
-  },
-  {
-    category: portfolio_tags.experience,
-    descriptions: ["약 91개의 테스트 코드 작성 및 검토 후 테스트 자동화. 수많은 잠재적 에러 발생 가능성 감소"],
-  },
-  {
-    category: portfolio_tags.experience,
     descriptions: [
-      "Session(local)과 JWT(oauth)를 기반으로 nodemailer, oauth api 등을 사용해 로그인 페이지 a to z 풀스택 구현",
+      "앱과 로그인 페이지, 홈페이지 그 외 서브페이지 등 풀스택 전담 개발, 웹사이트는 배포 후 MAU 200% 증가",
     ],
   },
   {
     category: portfolio_tags.experience,
     descriptions: [
-      "Next.js cache와 SSG 그리고 react query, http 캐시 등 strict한 캐싱을 선호하며, 적극 사용해 프론트엔드 성능 최적화 경험",
+      "대규모 SaaS 서버를 무중단 리팩토링했던 경험. 약 91개의 테스트 코드 작성 및 검토 후 테스트 자동화. 수많은 잠재적 에러 발생 가능성 감소",
+    ],
+  },
+  {
+    category: portfolio_tags.experience,
+    descriptions: [
+      "Next.js cache와 SSG 그리고 react query, http 캐시 등 strict한 캐싱을 선호하며, 이를 적극 사용한 프론트엔드 성능 최적화 경험",
     ],
   },
   {
@@ -76,7 +70,7 @@ export const canapeExperienceData = [
   {
     category: portfolio_tags.startup,
     descriptions: [
-      "스타트업부터 대기업까지 다양한 분야의 개발&마케팅팀과 서비스 커스터마이징 연동 및 콜라보레이션 협업 관련한 미팅 진행 경험",
+      "스타트업부터 대기업까지 다양한 분야의 개발&마케팅팀과 서비스 커스터마이징 연동 및 콜라보레이션 협업 미팅 진행 경험",
     ],
   },
   {
@@ -85,7 +79,7 @@ export const canapeExperienceData = [
   },
   {
     category: portfolio_tags.experience,
-    descriptions: ["DAU 최대 5만, MAU 50만~100만 대규모 프로젝트에서의 서버 트래픽 처리 경험"],
+    descriptions: ["DAU 최대 3만, MAU 50만~100만 대규모 프로젝트에서의 서버 트래픽 처리 경험"],
   },
   {
     category: portfolio_tags.experience,
@@ -93,7 +87,7 @@ export const canapeExperienceData = [
   },
   {
     category: portfolio_tags.experience,
-    descriptions: ["프론트엔드 백엔드 레거시 리팩토링 및 성능 최적화"],
+    descriptions: ["프론트엔드 백엔드 레거시 리팩토링 및 성능 최적화 경험"],
   },
 ]
 
