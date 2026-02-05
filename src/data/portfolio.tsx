@@ -106,6 +106,37 @@ export const outsourcingExperienceData = [
   },
 ]
 
+export const histories = [
+  {
+    date: "2013년 11월 ~ 2015년 8월",
+    title: "육군병장 만기제대",
+  },
+  {
+    date: "2017년 4월 - 2018년 4월",
+    title: "일본 거주 경험",
+  },
+  {
+    date: "2019년 12월",
+    title: "일본어 통역 국가 자격증 취득",
+  },
+  {
+    date: "2020년 12월",
+    title: "영어 통역 국가 자격증 취득",
+  },
+  {
+    date: "2021년 4월",
+    title: "학점은행제 경영학과 졸업",
+  },
+  {
+    date: "2021년 6월",
+    title: "정보처리기사 취득",
+  },
+  {
+    date: "2023년 4월 ~ 2024년 10월",
+    title: "30개국 세계여행",
+  },
+]
+
 export const rankingtogetherExperienceData = [
   {
     category: portfolio_tags.achieve,

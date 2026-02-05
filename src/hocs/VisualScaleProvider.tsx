@@ -2,11 +2,11 @@ import { useLayoutEffect, useRef } from "react"
 
 export default function VisualScaleProvider({ children }: { children: React.ReactNode }) {
   // 페이지 로드 시점의 하드웨어 기본 DPR 저장 (Mac Retina는 여기서 2가 저장됨)
-  const baseDPR = useRef<number>(2)
+  const baseDPR = useRef<number>(1)
 
   useLayoutEffect(() => {
     // 초기화: 현재 장치의 기본 해상도 비율을 1.0(기준)으로 잡음
-    baseDPR.current = 2
+    baseDPR.current = window.devicePixelRatio < 2 ? 2 : window.devicePixelRatio
 
     const updateScale = () => {
       const currentDPR = window.devicePixelRatio || 1

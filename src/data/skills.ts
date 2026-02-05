@@ -46,7 +46,7 @@ export const currentSkillMap = {
   tailwindcss: "Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff",
   nestjs: "NestJS-E0234E?logo=nestjs&logoColor=fff",
   django: "Django-092E20?logo=django&logoColor=fff",
-  go: "Go-00ADD8?logo=go&logoColor=fff",
+  spring: "Spring-6DB33F?logo=spring&logoColor=fff",
   postgresql: "PostgreSQL-316192?logo=postgresql&logoColor=fff",
   docker: "Docker-2496ED?logo=docker&logoColor=fff",
   cloudflare: "Cloudflare-F38020?logo=cloudflare&logoColor=fff",

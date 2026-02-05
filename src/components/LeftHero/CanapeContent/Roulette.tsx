@@ -2,12 +2,29 @@ import { cn } from "@/lib/utils"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import type { TConductorInstance } from "react-canvas-confetti/dist/types"
+import { BsHandIndexFill } from "react-icons/bs"
 import { CanapeStep } from "./types"
 
 const SECTION_COUNT = 6
 const SECTION_ANGLE = 360 / SECTION_COUNT
 
-const letters = ["A", "B", "C", "D", "E", "F"]
+const images = [
+  "/images/roulette/candy.png",
+  "/images/roulette/coffee.png",
+  "/images/roulette/coin.png",
+  "/images/roulette/wine.png",
+  "/images/roulette/money.png",
+  "/images/roulette/gift.png",
+]
+
+const IMAGE_INDEX_TO_RESULT_INDEX: Record<number, string> = {
+  0: "랜덤박스",
+  1: "5만원 상당 상품권",
+  2: "프랑스산 고급 와인",
+  3: "적립금 3만원",
+  4: "아메리카노 라지 1잔",
+  5: "춥파츄스",
+}
 
 const cx = 100
 const cy = 100
@@ -31,6 +48,7 @@ export default function Roulette({
   setStep: (step: CanapeStep) => void
   setMessage: (message: string) => void
 }) {
+  const [isHideHand, setIsHideHand] = useState(false)
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
   const scheduleMessage = (fn: () => void, ms: number) => {
@@ -49,6 +67,7 @@ export default function Roulette({
   const [isAfterDrag, setIsAfterDrag] = useState(false)
   const [isStopDrag, setIsStopDrag] = useState(false)
   const [isOnGrab, setIsOnGrab] = useState(false)
+  const [resultIndex, setResultIndex] = useState<number>(0)
 
   const [angle] = useState(() => getRandomAngle())
 
@@ -74,6 +93,11 @@ export default function Roulette({
     }
   }
 
+  useEffect(() => {
+    setResultIndex(Math.floor(angle / SECTION_ANGLE))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <motion.div
       initial="initial"
@@ -81,10 +105,23 @@ export default function Roulette({
       exit="exit"
       variants={{
         initial: {
-          opacity: 1,
+          opacity: 0,
+          y: 300, // 300px
         },
         visible: {
           opacity: 1,
+          y: 0,
+          transition: {
+            y: {
+              duration: 1.12,
+              ease: [0.21, 0.88, 0.29, 1],
+              delay: 0.3,
+            },
+            opacity: {
+              duration: 0.4,
+              delay: 0.3,
+            },
+          },
         },
         exit: {
           opacity: 0,
@@ -108,7 +145,25 @@ export default function Roulette({
         style={{ backgroundImage: "linear-gradient(90deg, #d6c4f7 0%, #b4a8e6 35%, #a3c9e8 100%)" }}
         className={cn("w-70 h-70 rounded-full p-2.5 border-2 border-purple-200 relative")}
       >
-        {!isAfterDrag && (
+        {!isHideHand && (
+          <motion.div
+            className={cn("absolute top-1 left-1")}
+            animate={{
+              x: [0, 4, 0, 4, 0],
+              y: [0, 4, 0, 4, 0], // 16px down, 16px up, back to 0
+            }}
+            transition={{
+              duration: 0.8,
+              times: [0, 0.33, 0.66, 1],
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 1,
+            }}
+          >
+            <BsHandIndexFill className={cn("size-6 rotate-145")} />
+          </motion.div>
+        )}
+        {!isStopDrag && (
           <motion.div
             className={cn(
               "absolute top-0 left-0 w-30 h-50 z-100 touch-none",
@@ -123,6 +178,7 @@ export default function Roulette({
             style={{ y: dragY }}
             onDragStart={() => {
               setIsOnGrab(true)
+              setIsHideHand(true)
             }}
             onDragEnd={() => {
               // 일정 수준 dragY(예: 60) 이상일 때만 동작
@@ -138,14 +194,14 @@ export default function Roulette({
                   const timer = setTimeout(() => {
                     conductor?.stop()
                   }, 1000)
-                  setMessage("오! {선물}에 당첨되셨네요 🎉")
+                  setMessage(`${IMAGE_INDEX_TO_RESULT_INDEX[resultIndex] ?? "랜덤박스"}에 당첨되셨네요 🎉`)
 
                   clearTimeout(timer)
                 }, 380 + 1300)
                 scheduleMessage(
                   () => {
-                    setMessage("어디있는지 맞춰보세요!")
-                    setStep(CanapeStep.SHELL_GAME)
+                    setMessage("오늘의 운세를 알려드릴게요! 💌")
+                    setStep(CanapeStep.TAROT_CARD)
                   },
                   380 + 1300 + 3500,
                 )
@@ -199,23 +255,26 @@ export default function Roulette({
 
               const tp = polar(midAngle, textR)
 
-              const textRotate = (midAngle + 90).toFixed(3)
+              const textRotate = (
+                midAngle +
+                90 +
+                (images[i].includes("wine") || images[i].includes("coffee") ? 30 : 0)
+              ).toFixed(3)
+              const imageSize = 40
 
               return (
                 <g key={`roulette-section-${i}`}>
                   <path d={`M ${cx} ${cy} L ${p1.x} ${p1.y} A ${r} ${r} 0 0 1 ${p2.x} ${p2.y} Z`} fill={fill} />
-                  <text
-                    x={tp.x}
-                    y={tp.y}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fill="#111827"
-                    fontSize="18"
-                    fontWeight="700"
+                  <image
+                    href={images[i]}
+                    xlinkHref={images[i]}
+                    x={tp.x - imageSize / 2}
+                    y={tp.y - imageSize / 2}
+                    width={imageSize}
+                    height={imageSize}
+                    preserveAspectRatio="xMidYMid meet"
                     transform={`rotate(${textRotate} ${tp.x} ${tp.y})`}
-                  >
-                    {letters[i] ?? ""}
-                  </text>
+                  />
                 </g>
               )
             })}

@@ -6,6 +6,7 @@ import type { TConductorInstance } from "react-canvas-confetti/dist/types"
 import { TypeAnimation } from "react-type-animation"
 import Roulette from "./CanapeContent/Roulette"
 import ShellGame from "./CanapeContent/ShellGame"
+import TarotCard from "./CanapeContent/TarotCard"
 import { CanapeStep } from "./CanapeContent/types"
 
 export default function Canape() {
@@ -52,13 +53,23 @@ export default function Canape() {
           )}
         </AnimatePresence>
         <AnimatePresence>
+          {step === CanapeStep.TAROT_CARD && (
+            <TarotCard setStep={setStep} setMessage={setMessage} conductor={conductor as TConductorInstance} />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
           {step === CanapeStep.SHELL_GAME && (
             <ShellGame setStep={setStep} setMessage={setMessage} conductor={conductor as TConductorInstance} />
           )}
         </AnimatePresence>
       </motion.div>
-      <div className={cn("w-full absolute left-1/2 -translate-x-1/2 bottom-6")}>
-        <div className={cn("w-[80%] mx-auto bg-mainBg rounded-lg border border-border py-5 px-7")}>
+      <div className={cn("w-[80%] absolute left-1/2 -translate-x-1/2 bottom-6")}>
+        <div className={cn("flex justify-end pr-2")}>
+          <p className={cn("text-sm text-description")}>
+            {step === CanapeStep.ROULETTE ? 1 : step === CanapeStep.TAROT_CARD ? 2 : 3} / 3
+          </p>
+        </div>
+        <div className={cn("w-full mx-auto bg-mainBg rounded-lg border border-border py-5 px-7")}>
           <TypeAnimation
             key={message}
             className={cn("text-md text-white")}

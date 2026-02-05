@@ -1,20 +1,28 @@
+import { XIcon } from "lucide-react"
 import { useCallback, useState } from "react"
 import Galaxy from "./components/Galaxy"
 import Canape from "./components/LeftHero/Canape"
+import Main from "./components/LeftHero/Main"
+import RankingTogether from "./components/LeftHero/RankingTogether"
 import Skills from "./components/LeftHero/Skills"
+import SmartWordbook from "./components/LeftHero/SmartWordbook"
 import Smore from "./components/LeftHero/Smore"
 import Section from "./components/Section"
 import { imageAssets } from "./data/images"
 import {
   canapeExperienceData,
+  histories,
   outsourcingExperienceData,
   rankingtogetherExperienceData,
   smooreExperienceData,
 } from "./data/portfolio"
 import { currentSkillMap } from "./data/skills"
+import useMediaQuery from "./lib/useMediaQuery"
 import { cn } from "./lib/utils"
 
 function App() {
+  const isMobile = useMediaQuery("(max-width: 640px)")
+  const [isOpenGalaxy, setIsOpenGalaxy] = useState(false)
   const [playNumber, setPlayNumber] = useState<number | null>(null)
 
   const onClickSection = useCallback((number?: number | null) => {
@@ -28,15 +36,24 @@ function App() {
     const sectionEl = target.closest('[id^="section-"]')
     if (!sectionEl) {
       setPlayNumber(null)
+      if (isMobile) {
+        setIsOpenGalaxy(false)
+      }
       return
     }
 
     const m = sectionEl.id.match(/^section-(\d+)$/)
     if (!m) {
       setPlayNumber(null)
+      if (isMobile) {
+        setIsOpenGalaxy(false)
+      }
       return
     }
 
+    if (isMobile) {
+      setIsOpenGalaxy(true)
+    }
     onClickSection(Number(m[1]))
   }
   return (
@@ -44,12 +61,26 @@ function App() {
       <div className={cn("w-full h-full overflow-scroll")}>
         <div
           id="content"
-          className={cn("w-250 mx-auto grid grid-cols-[26.25rem_36.25rem] rounded-md border border-border")}
+          className={cn(
+            "mx-auto grid-cols-[26.25rem_36.25rem] rounded-md border border-border",
+            "flex w-full sm:grid sm:w-250",
+          )}
         >
           <div
-            className={cn("w-full sticky top-0 bg-black rounded-l-md overflow-hidden")}
-            style={{ height: "calc(100dvh - 1.5rem)" }}
+            className={cn(
+              "w-full sticky top-0 left-0 bg-black rounded-l-md overflow-hidden",
+              "fixed sm:sticky z-1000 h-dvh sm:h-[calc(100dvh-1.5rem)]",
+              isMobile ? (isOpenGalaxy ? "block" : "hidden") : "block",
+            )}
           >
+            {isMobile && (
+              <button
+                onClick={() => setIsOpenGalaxy(false)}
+                className={cn("absolute cursor-pointer top-4 right-4 z-10000")}
+              >
+                <XIcon className={cn("size-8 text-white")} />
+              </button>
+            )}
             <Galaxy
               mouseRepulsion={false}
               mouseInteraction={false}
@@ -67,17 +98,30 @@ function App() {
             {playNumber === 1 && <Skills allLogosLoaded={true} />}
             {playNumber === 3 && <Smore />}
             {playNumber === 4 && <Canape />}
+            {playNumber === 5 && <RankingTogether />}
+            {playNumber === 7 && <SmartWordbook />}
+            {playNumber !== 1 && playNumber !== 3 && playNumber !== 4 && playNumber !== 5 && playNumber !== 7 && (
+              <Main />
+            )}
           </div>
-          <div className={cn("bg-mainBg rounded-r-md overflow-hidden")}>
+          <div className={cn("bg-mainBg rounded-r-md overflow-hidden w-full")}>
             {/* left side */}
-            <div className={cn("w-full h-40 bg-red-200")}></div>
+            <div
+              style={{
+                backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/503/398/475/gradient-shapes-abstract-minimalism-wallpaper-preview.jpg')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+              className={cn("w-full h-40")}
+            ></div>
 
             {/* right side */}
             <div onClick={onClickRightSide} id="right-side" className={cn("w-full px-5 relative")}>
               {/* profile */}
               <div className={cn("flex items-end gap-4 px-10 w-full mb-10")}>
                 <img
-                  src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80"
+                  src="/images/profile.jpg"
                   alt="profile"
                   className={cn("w-20 h-20 rounded-full object-cover -translate-y-[30%]")}
                 />
@@ -91,7 +135,7 @@ function App() {
               </div>
 
               {/* skills */}
-              <Section sectionNumber={1}>
+              <Section sectionNumber={1} onClickRightSide={onClickRightSide}>
                 <div className={cn("mb-6")}>
                   <h3 className={cn("text-lg font-bold")}>기술 스택</h3>
                   <p className={cn("text-sm text-description")}>실무 / 실제 프로젝트에서 주로 사용한 기술.</p>
@@ -129,7 +173,7 @@ function App() {
               </Section>
 
               {/* SMOORE PRODUCT */}
-              <Section sectionNumber={3}>
+              <Section sectionNumber={3} onClickRightSide={onClickRightSide}>
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>스모어 프로덕트</h3>
                   <p className={cn("text-sm text-description")}>인터렉티브 퀴즈&설문 빌더</p>
@@ -173,7 +217,7 @@ function App() {
               </Section>
 
               {/* CANAPE PRODUCT */}
-              <Section sectionNumber={4}>
+              <Section sectionNumber={4} onClickRightSide={onClickRightSide}>
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>카나페 프로덕트</h3>
                   <p className={cn("text-sm text-description")}>노코드 참여형 이벤트/콘텐츠 빌더</p>
@@ -218,7 +262,7 @@ function App() {
               </Section>
 
               {/* RANKING TOGETHER PRODUCT */}
-              <Section sectionNumber={5}>
+              <Section sectionNumber={5} onClickRightSide={onClickRightSide}>
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>랭킹투게더</h3>
                   <p className={cn("text-sm text-description")}>크리에이티브 컨텐츠 공유 플랫폼</p>
@@ -229,11 +273,10 @@ function App() {
                     <p className={cn("text-sm leading-5 text-description mb-0.5")}>
                       · AI 활용 능력을 향상하고, 아이디어를 구체화하는
                       <br />
-                      스타트업 프로세스를 1인 개발으로 경험하기 위한 개인 프로젝트
+                      스타트업 프로세스를 1인 개발으로 경험하기 위한 공부용 개인 프로젝트
                     </p>
                     <p className={cn("text-sm leading-5.5 text-description")}>
-                      · 디시인사이드, 오픈채팅에서 잠깐 DAU를 1000명 달성 <br /> · 피봇 후 드랍한 프로젝트. 코딩이 제일
-                      쉽고 개발이 제일 어렵다
+                      · 커뮤니티를 통해 잠깐 DAU 1000 달성 경험 <br /> · 코딩이 제일 쉽고 개발이 제일 어렵다
                     </p>
                   </div>
 
@@ -266,7 +309,7 @@ function App() {
               </Section>
 
               {/* OUTSOURCING PRODUCT */}
-              <Section sectionNumber={6}>
+              <Section hasNoContent={true} sectionNumber={6}>
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>외주 작업</h3>
                   <p className={cn("text-sm text-description")}>고객사의 납품할 제품 전담 개발</p>
@@ -309,7 +352,7 @@ function App() {
               </Section>
 
               {/* AI SMART WORDBOOK PRODUCT */}
-              <Section sectionNumber={7}>
+              <Section onClickRightSide={onClickRightSide} sectionNumber={7}>
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>스마트 단어장 어플</h3>
                   <p className={cn("text-sm text-description")}>간단하게 단어장을 만들고 외울 수 있는 어플</p>
@@ -322,32 +365,33 @@ function App() {
                       <br />· 실제 단어장에 한땀 한땀 적은 단어장 처럼 공부 할 수 있게 다양한 기능 제공
                     </p>
                   </div>
+                </div>
+              </Section>
 
-                  <div className="overflow-x-auto">
-                    <table className="table">
-                      {/* head */}
-                      <thead>
-                        <tr>
-                          <th>기업</th>
-                          <th>설명</th>
+              {/* 자격증 등 */}
+              <Section hasNoContent={true} onClickRightSide={onClickRightSide} sectionNumber={8}>
+                <div className={cn("mb-4")}>
+                  <h3 className={cn("text-lg font-bold")}>자격증 외 활동</h3>
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="table">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>자격증명 / 활동</th>
+                        <th>취득날짜 및 기간</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {histories.map((item, index) => (
+                        <tr key={`outsourcing-product-${index}`}>
+                          <td>{item.title}</td>
+                          <td>{item.date}</td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {outsourcingExperienceData.map((item, index) => (
-                          <tr key={`outsourcing-product-${index}`}>
-                            <td>{item.company}</td>
-                            <td>
-                              {item.descriptions.map((description, descriptionIndex) => (
-                                <p key={`outsourcing-product-description-${index}-${descriptionIndex}`}>
-                                  {description}
-                                </p>
-                              ))}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </Section>
             </div>

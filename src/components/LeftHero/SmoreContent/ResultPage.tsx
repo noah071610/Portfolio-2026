@@ -85,16 +85,12 @@ function ResultCardPage({ result }: { result: number }) {
           </div>
           <div className={cn("w-full flex flex-col gap-3")}>
             <p className={cn("text-sm leading-6 text-white")}>
-              저는 AI로 생산성을 극대화 시키고 효율을 늘리지만 주객전도로 끌려가지 않고 좋은 도구로 사용하는 개발자가
-              되는 것이 목표입니다.
+              AI로 생산성을 극대화 시키고 효율을 늘리지만 주객전도로 끌려가지 않고 좋은 도구로 사용하는 것은 현재
+              개발자에게 중요한 역량입니다.
             </p>
             <p className={cn("text-sm leading-6 text-white")}>
-              이와 반대로 단순히 구현만 하고 한 가지 기술, 업무에만 얽매인다면 개발자로서 좀 더 합리적인 선택을 내리기
-              어려워지고 장차 개발자가 필요한 이유 자체가 AI에게 흔들리게 된다고 생각합니다.
-            </p>
-            <p className={cn("text-sm leading-6 text-white")}>
-              그렇기 때문에 개발자 본연의 업무뿐만 아니라 실무에서는 프로젝트 매니징, CS, 제품 전략 수립, 아키텍처 설계
-              등 PM으로서의 다양한 경험도 주저하지 않으며 우여곡절 성장했습니다.
+              그렇기 때문에 코더가 아닌 프로덕트를 다루는 개발자로서 성장했으며 프로젝트 매니징, CS, 제품 전략 수립,
+              아키텍처 설계 등 PM으로서의 다양한 경험도 주저하지 않으며 우여곡절 성장했습니다.
             </p>
             <p className={cn("text-sm leading-6 text-white")}>
               특히 고객은 항상 우선이며 B2B와 B2C를 막론하고 기업이 최종적으로 추구해야하는 가장 중요한 가치라고

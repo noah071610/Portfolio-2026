@@ -272,6 +272,7 @@ export default function ShellGame({
       if (isResettingRef.current) return
 
       setStage("readyToInteraction")
+      setMessage("드래그해서 컵을 올려주세요!")
     } catch {
       console.log("Animation interrupted")
     }
@@ -285,6 +286,7 @@ export default function ShellGame({
     rightCupScope,
     ballAnimate,
     ballScope,
+    setMessage,
   ])
 
   const onFinish = useCallback(
@@ -337,12 +339,12 @@ export default function ShellGame({
         const timer = setTimeout(() => {
           conductor?.stop()
         }, 1000)
-        setMessage("축하해요 아메리카노에 당첨되셨네요 🎉")
+        setMessage("축하해요 아메리카노에 당첨되셨네요! ☕️")
 
         clearTimeout(timer)
       }, 1500)
       setTimeout(() => {
-        setMessage("어디있는지 맞춰보세요!")
+        setMessage("한 번 돌려보시겠어요? 🎁")
         setStep(CanapeStep.ROULETTE)
       }, 1500 + 3500)
     },
@@ -372,6 +374,7 @@ export default function ShellGame({
     <motion.div
       initial="initial"
       animate="visible"
+      exit="exit"
       variants={{
         initial: {
           opacity: 0,
@@ -392,8 +395,20 @@ export default function ShellGame({
             },
           },
         },
+        exit: {
+          opacity: 0,
+          y: 300,
+          transition: {
+            y: {
+              duration: 1.12,
+              ease: [0.21, 0.88, 0.29, 1],
+            },
+            opacity: {
+              duration: 0.4,
+            },
+          },
+        },
       }}
-      onClick={onStart}
       className={cn(
         "w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pb-10",
       )}
@@ -536,7 +551,7 @@ export default function ShellGame({
                 opacity: 1,
                 y: rem(0.4375), // 7px
                 x: "-50%",
-                rotate: -45,
+                rotate: -45 - 122,
               },
             }}
             transition={{

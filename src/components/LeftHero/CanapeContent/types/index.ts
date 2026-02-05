@@ -4,4 +4,6 @@ export enum CanapeStep {
   ROULETTE_END = 2,
   SHELL_GAME = 3,
   SHELL_GATHER_END = 4,
+  TAROT_CARD = 5,
+  TAROT_CARD_END = 6,
 }
