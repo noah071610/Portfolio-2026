@@ -1,5 +1,6 @@
 "use client"
 
+import { imageAssets } from "@/data/images"
 import { EASE_OUT } from "@/lib/animation"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
@@ -38,7 +39,7 @@ function ResultCardPage({ result }: { result: number }) {
             className={cn("absolute w-full z-10 h-0 pb-[calc(100%+0.5rem)] bg-center bg-cover bg-no-repeat")}
             style={{
               //   backgroundColor: "rgba(255, 255, 255, 1)",
-              backgroundImage: `url('https://loosedrawing.com/assets/media/illustrations/png/991.png')`,
+              backgroundImage: `url('${imageAssets.quiz.result}')`,
             }}
           ></div>
         </div>

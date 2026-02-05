@@ -7,10 +7,10 @@ import { useEffect, useMemo, useState } from "react"
 export default function SmartWordbook() {
   const images = useMemo(
     () => [
-      "/images/wordbook/wordbook-1.webp",
-      "/images/wordbook/wordbook-2.webp",
-      "/images/wordbook/wordbook-3.webp",
-      "/images/wordbook/wordbook-4.webp",
+      imageAssets.wordbook.wordbook1,
+      imageAssets.wordbook.wordbook2,
+      imageAssets.wordbook.wordbook3,
+      imageAssets.wordbook.wordbook4,
     ],
     [],
   )

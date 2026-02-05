@@ -3,6 +3,7 @@ import { getRandom } from "./getRandom"
 
 const ICON_PX = 60
 const getScale = (size: number) => size / ICON_PX
+const baseUrl = import.meta.env.VITE_BASE_URL
 
 const FRICTION = 0.05
 const RESTITUTION = 0.5
@@ -15,7 +16,7 @@ export const getCircle = (x: number, y: number, size: number, asset: string) => 
       angularVelocity: 0.1,
       render: {
         sprite: {
-          texture: `./images/icons/${asset}.png`,
+          texture: `${baseUrl}/images/icons/${asset}.png`,
           xScale: getScale(size),
           yScale: getScale(size),
         },
@@ -39,7 +40,7 @@ export const getRectangle = (x: number, y: number, size: number, asset: string) 
       angularVelocity: 0.1,
       render: {
         sprite: {
-          texture: `./images/icons/${asset}.png`,
+          texture: `${baseUrl}/images/icons/${asset}.png`,
           xScale: getScale(size),
           yScale: getScale(size),
         }, // 여기
@@ -61,7 +62,7 @@ export const getPolygon = (x: number, y: number, size: number, asset: string) =>
       angularVelocity: 0.1,
       render: {
         sprite: {
-          texture: `./images/icons/${asset}.png`,
+          texture: `${baseUrl}/images/icons/${asset}.png`,
           xScale: getScale(size),
           yScale: getScale(size),
         }, // 여기

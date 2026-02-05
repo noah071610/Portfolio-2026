@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion, useAnimate } from "framer-motion"
 
+import { imageAssets } from "@/data/images"
 import { cn } from "@/lib/utils"
 import { useCallback, useEffect, useRef, useState, type FC } from "react"
 import type { TConductorInstance } from "react-canvas-confetti/dist/types"
@@ -619,11 +620,7 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
           }}
           className={cn("absolute top-0 left-0 rounded-lg z-10", "w-40 h-62")}
         >
-          <img
-            className={cn("w-full h-full object-cover")}
-            src={"/images/tarot-card-front.png"}
-            alt="tarot card front"
-          />
+          <img className={cn("w-full h-full object-cover")} src={imageAssets.tarotCard.front} alt="tarot card front" />
         </motion.div>
         {cardAnimationRefs.map(([cardScope], index) => (
           <motion.div
@@ -643,11 +640,7 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
             }}
             className={cn("absolute top-0 left-0 rounded-lg z-20 overflow-hidden", "w-40 h-62")}
           >
-            <img
-              className={cn("w-full h-full object-fill")}
-              src={"/images/tarot-card-back.webp"}
-              alt="tarot card back"
-            />
+            <img className={cn("w-full h-full object-fill")} src={imageAssets.tarotCard.back} alt="tarot card back" />
           </motion.div>
         ))}
       </div>

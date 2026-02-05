@@ -66,6 +66,7 @@ function App() {
             "flex w-full sm:grid sm:w-250",
           )}
         >
+          {/* left side */}
           <div
             className={cn(
               "w-full sticky top-0 left-0 bg-black rounded-l-md overflow-hidden",
@@ -105,10 +106,9 @@ function App() {
             )}
           </div>
           <div className={cn("bg-mainBg rounded-r-md overflow-hidden w-full")}>
-            {/* left side */}
             <div
               style={{
-                backgroundImage: `url('https://c4.wallpaperflare.com/wallpaper/503/398/475/gradient-shapes-abstract-minimalism-wallpaper-preview.jpg')`,
+                backgroundImage: `url('${imageAssets.bg}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -121,7 +121,7 @@ function App() {
               {/* profile */}
               <div className={cn("flex items-end gap-4 px-10 w-full mb-10")}>
                 <img
-                  src="/images/profile.jpg"
+                  src={imageAssets.profile}
                   alt="profile"
                   className={cn("w-20 h-20 rounded-full object-cover -translate-y-[30%]")}
                 />

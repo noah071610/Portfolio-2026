@@ -1,3 +1,4 @@
+import { imageAssets } from "@/data/images"
 import { fadeUpStaggerAnimation } from "@/lib/animation"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
@@ -55,7 +56,7 @@ function CoverPage({ stage, onChangeStage }: { stage: StageType; onChangeStage: 
             "bg-white",
             "w-full aspect-16/12",
           )}
-          src={"https://loosedrawing.com/assets/media/illustrations/png/745.png"}
+          src={imageAssets.quiz.thumbnail}
           alt="thumbnail"
         />
         <motion.div {...fadeUpStaggerAnimation} className={cn("w-full h-auto relative flex-[0_1_auto] my-1.25")}>

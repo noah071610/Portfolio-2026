@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { imageAssets } from "@/data/images"
 import { EASE_OUT } from "@/lib/animation"
 import { cn } from "@/lib/utils"
 import { motion, useAnimate, useMotionValue, useTransform, type Easing } from "framer-motion"
@@ -481,7 +482,7 @@ export default function ShellGame({
                 duration: 0,
               },
             }}
-            src={"https://cdn.creazilla.com/cliparts/59638/coffee-beans-publicdomain-clipart-xl.png"}
+            src={imageAssets.coffeeBeans}
             alt="cup-1"
             className={cn("absolute bottom-0 w-10 h-10")}
           />
@@ -496,7 +497,7 @@ export default function ShellGame({
             className={cn("w-full h-full relative z-20", "")}
           >
             <img
-              src={"/images/cup.png"}
+              src={imageAssets.shellGame.cup}
               alt="cup-1"
               className={cn("select-none w-full h-full rotate-180")}
               draggable={false}
@@ -567,7 +568,7 @@ export default function ShellGame({
                 duration: 0,
               },
             }}
-            src={"https://cdn.creazilla.com/cliparts/59638/coffee-beans-publicdomain-clipart-xl.png"}
+            src={imageAssets.coffeeBeans}
             alt="bean-2"
             className={cn("absolute left-1/2 bottom-0 w-10 h-10")}
           />
@@ -583,7 +584,7 @@ export default function ShellGame({
             <img
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
-              src={"/images/cup.png"}
+              src={imageAssets.shellGame.cup}
               alt="cup-2"
               className={cn("select-none w-full h-full rotate-180")}
             />
@@ -656,7 +657,7 @@ export default function ShellGame({
                 duration: 0,
               },
             }}
-            src={"https://cdn.creazilla.com/cliparts/59638/coffee-beans-publicdomain-clipart-xl.png"}
+            src={imageAssets.coffeeBeans}
             alt="bean-3"
             className={cn("absolute bottom-0 w-10 h-10")}
           />
@@ -672,7 +673,7 @@ export default function ShellGame({
             <img
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
-              src={"/images/cup.png"}
+              src={imageAssets.shellGame.cup}
               alt="cup-3"
               className={cn("select-none w-full h-full rotate-180")}
             />
@@ -684,7 +685,7 @@ export default function ShellGame({
           draggable={false}
           onDragStart={(e) => e.preventDefault()}
           ref={ballScope}
-          src={"https://cdn.creazilla.com/cliparts/59638/coffee-beans-publicdomain-clipart-xl.png"}
+          src={imageAssets.coffeeBeans}
           alt="cup"
           className={cn("w-10 h-10")}
         />

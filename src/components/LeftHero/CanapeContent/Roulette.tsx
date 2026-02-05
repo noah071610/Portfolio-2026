@@ -1,3 +1,4 @@
+import { imageAssets } from "@/data/images"
 import { cn } from "@/lib/utils"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
@@ -9,12 +10,12 @@ const SECTION_COUNT = 6
 const SECTION_ANGLE = 360 / SECTION_COUNT
 
 const images = [
-  "/images/roulette/candy.png",
-  "/images/roulette/coffee.png",
-  "/images/roulette/coin.png",
-  "/images/roulette/wine.png",
-  "/images/roulette/money.png",
-  "/images/roulette/gift.png",
+  imageAssets.roulette.candy,
+  imageAssets.roulette.coffee,
+  imageAssets.roulette.coin,
+  imageAssets.roulette.wine,
+  imageAssets.roulette.money,
+  imageAssets.roulette.gift,
 ]
 
 const IMAGE_INDEX_TO_RESULT_INDEX: Record<number, string> = {
