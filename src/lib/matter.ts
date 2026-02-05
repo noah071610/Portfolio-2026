@@ -3,7 +3,7 @@ import { getRandom } from "./getRandom"
 
 const ICON_PX = 60
 const getScale = (size: number) => size / ICON_PX
-const baseUrl = import.meta.env.VITE_BASE_URL
+const baseUrl = "https://noah071610.github.io/Portfolio-2026/"
 
 const FRICTION = 0.05
 const RESTITUTION = 0.5
