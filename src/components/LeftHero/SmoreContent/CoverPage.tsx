@@ -43,10 +43,12 @@ function CoverPage({ stage, onChangeStage }: { stage: StageType; onChangeStage: 
       >
         <div className={cn("w-full flex flex-col items-center gap-2")}>
           <motion.h2 {...fadeUpStaggerAnimation} className="w-full text-center text-2xl font-bold">
-            나는 이 지원자를 채용할까?
+            지원자와 궁합 테스트
           </motion.h2>
           <motion.p {...fadeUpStaggerAnimation} className="text-sm text-description wrap-normal text-center">
-            성공적인 HR을 위한 지원자와의 궁합 테스트
+            성공적인 HR을 위해 지원자와의
+            <br />
+            궁합을 확인해보세요!
           </motion.p>
         </div>
         <motion.img

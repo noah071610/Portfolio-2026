@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.VITE_BASE_URL
+const baseUrl = "https://noah071610.github.io/Portfolio-2026/"
 
 export const imageAssets = {
   bg: `${baseUrl}/images/bg.jpg`,
@@ -37,5 +37,10 @@ export const imageAssets = {
   tarotCard: {
     front: `${baseUrl}/images/tarot-card-front.png`,
     back: `${baseUrl}/images/tarot-card-back.webp`,
+  },
+  videos: {
+    vn: `${baseUrl}/videos/vn.mp4`,
+    play: `${baseUrl}/videos/play.mp4`,
+    result: `${baseUrl}/videos/result.mp4`,
   },
 }

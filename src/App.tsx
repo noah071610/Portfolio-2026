@@ -127,9 +127,11 @@ function App() {
                 />
                 <div className={cn("pt-2")}>
                   <p className={cn("text-xl font-bold")}>장현수</p>
-                  <p className={cn("text-xs text-description mb-1")}>Full Stack & App Developer</p>
+                  <p className={cn("text-xs text-description mb-1")}>Full Stack Developer</p>
                   <div className={cn("flex items-center gap-2")}>
-                    <p className={cn("text-sm text-description")}>Do my best to make the best</p>
+                    <p className={cn("text-sm leading-4 text-description")}>
+                      I don't care about languages. but currently falling in love with Flutter and Python
+                    </p>
                   </div>
                 </div>
               </div>

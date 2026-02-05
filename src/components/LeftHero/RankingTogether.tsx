@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { useEffect, useMemo, useRef, useState } from "react"
 
 export default function RankingTogether() {
-  const videos = useMemo(() => ["/videos/vn.mp4", "/videos/play.mp4", "/videos/result.mp4"], [])
+  const videos = useMemo(() => [imageAssets.videos.vn, imageAssets.videos.play, imageAssets.videos.result], [])
   const videoElsRef = useRef<Array<HTMLVideoElement | null>>([])
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
