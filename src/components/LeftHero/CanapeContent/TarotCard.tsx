@@ -385,7 +385,7 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
         const timer = setTimeout(() => {
           conductor?.stop()
         }, 1000)
-        setMessage('오늘의 운세는 "인재는 잡는다!⚔️" 이네요')
+        setMessage('오늘의 운세는 "지원자를 잡는 용기⚔️" 이네요')
 
         clearTimeout(timer)
       }, 1000)

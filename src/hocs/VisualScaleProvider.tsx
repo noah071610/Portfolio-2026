@@ -6,10 +6,10 @@ export default function VisualScaleProvider({ children }: { children: React.Reac
 
   useLayoutEffect(() => {
     // 초기화: 현재 장치의 기본 해상도 비율을 1.0(기준)으로 잡음
-    baseDPR.current = window.devicePixelRatio < 2 ? 2 : window.devicePixelRatio
+    baseDPR.current = window.devicePixelRatio < 1.5 ? 2 : window.devicePixelRatio
 
     const updateScale = () => {
-      const currentDPR = window.devicePixelRatio || 1
+      const currentDPR = (window.window.devicePixelRatio < 1.5 ? 2 : window.devicePixelRatio) || 1
 
       // 1. 순수 브라우저 확대 비율 계산
       // 현재 DPR이 4이고 기본이 2라면, 사용자는 200% 확대한 것임 -> 결과값 2

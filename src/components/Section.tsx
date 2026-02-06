@@ -1,3 +1,4 @@
+import useMediaQuery from "@/lib/useMediaQuery"
 import { cn } from "@/lib/utils"
 import { PlayIcon } from "lucide-react"
 export default function Section({
@@ -5,12 +6,17 @@ export default function Section({
   sectionNumber,
   hasNoContent = false,
   onClickRightSide,
+  onClickSection,
+  setIsOpenGalaxy,
 }: {
   sectionNumber: number
   children: React.ReactNode
   hasNoContent?: boolean
   onClickRightSide?: (e: React.MouseEvent<HTMLDivElement>, isStop?: boolean) => void
+  onClickSection: (number: number) => void
+  setIsOpenGalaxy: (isOpen: boolean) => void
 }) {
+  const isMobile = useMediaQuery("(max-width: 640px)")
   // const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   // const didAutoClickRef = useRef(false)
 
@@ -50,7 +56,16 @@ export default function Section({
             "cursor-pointer absolute top-4 right-4 flex items-center justify-center p-1.75 rounded-full bg-border",
             "group",
           )}
-          onClick={onClickRightSide}
+          onClick={
+            isMobile
+              ? () => {
+                  if (!hasNoContent) {
+                    onClickSection(sectionNumber)
+                    setIsOpenGalaxy(true)
+                  }
+                }
+              : onClickRightSide
+          }
         >
           <PlayIcon className={cn("size-3.5 text-sm text-description", "group-hover:text-white")} />
         </div>

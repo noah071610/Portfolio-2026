@@ -30,6 +30,9 @@ function App() {
   }, [])
 
   const onClickRightSide: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    if (isMobile) {
+      return
+    }
     const target = e.target
     if (!(target instanceof Element)) return
 
@@ -57,7 +60,7 @@ function App() {
     onClickSection(Number(m[1]))
   }
   return (
-    <main className={cn("w-screen h-dvh p-3 bg-black overflow-hidden")}>
+    <main className={cn("w-screen h-dvh bg-black overflow-hidden", "sm:p-3")}>
       <div className={cn("w-full h-full overflow-scroll")}>
         <div
           id="content"
@@ -105,7 +108,7 @@ function App() {
               <Main />
             )}
           </div>
-          <div className={cn("bg-mainBg rounded-r-md overflow-hidden w-full")}>
+          <div className={cn("bg-mainBg overflow-hidden w-full", "sm:rounded-r-md")}>
             <div
               style={{
                 backgroundImage: `url('${imageAssets.bg}')`,
@@ -117,9 +120,9 @@ function App() {
             ></div>
 
             {/* right side */}
-            <div onClick={onClickRightSide} id="right-side" className={cn("w-full px-5 relative")}>
+            <div onClick={onClickRightSide} id="right-side" className={cn("w-full relative", "px-4 sm:px-5")}>
               {/* profile */}
-              <div className={cn("flex items-end gap-4 px-10 w-full mb-10")}>
+              <div className={cn("grid grid-cols-[5rem_1fr] gap-4 w-full mb-10", "px-4 sm:px-10")}>
                 <img
                   src={imageAssets.profile}
                   alt="profile"
@@ -137,7 +140,12 @@ function App() {
               </div>
 
               {/* skills */}
-              <Section sectionNumber={1} onClickRightSide={onClickRightSide}>
+              <Section
+                sectionNumber={1}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-6")}>
                   <h3 className={cn("text-lg font-bold")}>기술 스택</h3>
                   <p className={cn("text-sm text-description")}>실무 / 실제 프로젝트에서 주로 사용한 기술.</p>
@@ -151,7 +159,12 @@ function App() {
               </Section>
 
               {/* career */}
-              <Section sectionNumber={2} hasNoContent={true}>
+              <Section
+                sectionNumber={2}
+                hasNoContent={true}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>경력</h3>
                   <p className={cn("text-sm text-description")}>스타트업 초기멤버로 함께 성장한 하나의 기업</p>
@@ -175,7 +188,12 @@ function App() {
               </Section>
 
               {/* SMOORE PRODUCT */}
-              <Section sectionNumber={3} onClickRightSide={onClickRightSide}>
+              <Section
+                sectionNumber={3}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>스모어 프로덕트</h3>
                   <p className={cn("text-sm text-description")}>인터렉티브 퀴즈&설문 빌더</p>
@@ -219,7 +237,12 @@ function App() {
               </Section>
 
               {/* CANAPE PRODUCT */}
-              <Section sectionNumber={4} onClickRightSide={onClickRightSide}>
+              <Section
+                sectionNumber={4}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>카나페 프로덕트</h3>
                   <p className={cn("text-sm text-description")}>노코드 참여형 이벤트/콘텐츠 빌더</p>
@@ -264,7 +287,12 @@ function App() {
               </Section>
 
               {/* RANKING TOGETHER PRODUCT */}
-              <Section sectionNumber={5} onClickRightSide={onClickRightSide}>
+              <Section
+                sectionNumber={5}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>랭킹투게더</h3>
                   <p className={cn("text-sm text-description")}>크리에이티브 컨텐츠 공유 플랫폼</p>
@@ -311,7 +339,12 @@ function App() {
               </Section>
 
               {/* OUTSOURCING PRODUCT */}
-              <Section hasNoContent={true} sectionNumber={6}>
+              <Section
+                hasNoContent={true}
+                sectionNumber={6}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>외주 작업</h3>
                   <p className={cn("text-sm text-description")}>고객사의 납품할 제품 전담 개발</p>
@@ -354,7 +387,12 @@ function App() {
               </Section>
 
               {/* AI SMART WORDBOOK PRODUCT */}
-              <Section onClickRightSide={onClickRightSide} sectionNumber={7}>
+              <Section
+                onClickRightSide={onClickRightSide}
+                sectionNumber={7}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>스마트 단어장 어플</h3>
                   <p className={cn("text-sm text-description")}>간단하게 단어장을 만들고 외울 수 있는 어플</p>
@@ -371,7 +409,13 @@ function App() {
               </Section>
 
               {/* 자격증 등 */}
-              <Section hasNoContent={true} onClickRightSide={onClickRightSide} sectionNumber={8}>
+              <Section
+                hasNoContent={true}
+                onClickRightSide={onClickRightSide}
+                sectionNumber={8}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
                 <div className={cn("mb-4")}>
                   <h3 className={cn("text-lg font-bold")}>자격증 외 활동</h3>
                 </div>
