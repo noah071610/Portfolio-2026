@@ -158,6 +158,29 @@ function App() {
                 </div>
               </Section>
 
+              <Section
+                sectionNumber={11}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+                hasNoContent={true}
+              >
+                <div className={cn("mb-4")}>
+                  <h3 className={cn("text-lg font-bold")}>자기 소개</h3>
+                </div>
+
+                <ol className={cn("flex flex-col gap-2.5")}>
+                  <li className={cn("text-white text-sm leading-4.5")}>
+                    왜 만들어지는지 의문을 가지고, 어떻게 만들어야 하는지 알아내는 개발자
+                  </li>
+                  <li className={cn("text-white text-sm leading-4.5")}>
+                    디자인, 프로젝트 매니징, CS 등 프로덕트 관리자로서의 넓고 얕은 영역을
+                    <br />
+                    실무에서 직접 경험하며 내가 다루는 프로덕트의 청사진을 읽어내는 개발자
+                  </li>
+                </ol>
+              </Section>
+
               {/* career */}
               <Section
                 sectionNumber={2}
@@ -417,7 +440,7 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>자격증 외 활동</h3>
+                  <h3 className={cn("text-lg font-bold")}>자격증 / 활동</h3>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -425,7 +448,7 @@ function App() {
                     {/* head */}
                     <thead>
                       <tr>
-                        <th>자격증명 / 활동</th>
+                        <th>설명</th>
                         <th>취득날짜 및 기간</th>
                       </tr>
                     </thead>
