@@ -16,7 +16,7 @@ import {
   rankingtogetherExperienceData,
   smooreExperienceData,
 } from "./data/portfolio"
-import { currentSkillMap } from "./data/skills"
+import { skillMap } from "./data/skills"
 import useMediaQuery from "./lib/useMediaQuery"
 import { cn } from "./lib/utils"
 
@@ -139,25 +139,6 @@ function App() {
                 </div>
               </div>
 
-              {/* skills */}
-              <Section
-                sectionNumber={1}
-                onClickRightSide={onClickRightSide}
-                onClickSection={onClickSection}
-                setIsOpenGalaxy={setIsOpenGalaxy}
-              >
-                <div className={cn("mb-6")}>
-                  <h3 className={cn("text-lg font-bold")}>기술 스택</h3>
-                  <p className={cn("text-sm text-description")}>실무 / 실제 프로젝트에서 주로 사용한 기술.</p>
-                </div>
-
-                <div className={cn("w-full flex items-center gap-2 flex-wrap")}>
-                  {Object.entries(currentSkillMap).map(([key, value]) => (
-                    <img key={key} src={`https://img.shields.io/badge/${value}`} alt={key} className={cn("h-5")} />
-                  ))}
-                </div>
-              </Section>
-
               <Section
                 sectionNumber={11}
                 onClickRightSide={onClickRightSide}
@@ -179,6 +160,110 @@ function App() {
                     실무에서 직접 경험하며 내가 다루는 프로덕트의 청사진을 읽어내는 개발자
                   </li>
                 </ol>
+              </Section>
+
+              {/* skills */}
+              <Section
+                sectionNumber={1}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+              >
+                <div className={cn("")}>
+                  <h3 className={cn("text-lg font-bold")}>기술 스택</h3>
+                  <p className={cn("text-sm text-description")}>
+                    어떤 언어와 프레임워크를 사용할지 그 이유가 무엇인지를 먼저 파악하고,
+                    <br />
+                    AI의 도움으로 빠르게 학습해서 적용합니다.
+                  </p>
+                </div>
+
+                <div className={cn("w-full flex py-6")}>
+                  <div className={cn("h-0.25 w-full bg-border")}></div>
+                </div>
+
+                <ul className={cn("w-full flex flex-col gap-5 mb-2")}>
+                  <li className={cn("flex flex-col")}>
+                    <p className={cn("mb-1")}>피봇을 염두한 빠른 MVP or Prototype 웹/앱 개발</p>
+                    <ul className={cn("flex flex-wrap gap-1")}>
+                      <img src={`https://img.shields.io/badge/${skillMap.react}`} alt="react" className={cn("h-5")} />
+                      <img src={`https://img.shields.io/badge/${skillMap.vite}`} alt="vite" className={cn("h-5")} />
+                      <img src={`https://img.shields.io/badge/${skillMap.bun}`} alt="bun" className={cn("h-5")} />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.flutter}`}
+                        alt="flutter"
+                        className={cn("h-5")}
+                      />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.supabase}`}
+                        alt="supabase"
+                        className={cn("h-5")}
+                      />
+                    </ul>
+                  </li>
+                  <li className={cn("flex flex-col")}>
+                    <p className={cn("")}>가볍지만 직접 세부 로직 수정이 필요한 api 서버 구축</p>
+                    <p className={cn("text-xs text-description mb-2.5")}>
+                      AI와 관련된 API 등의 기술 적극 사용시 : fastapi / 빠른 개발과 가성비 : hono
+                    </p>
+                    <ul className={cn("flex flex-wrap gap-1")}>
+                      <img src={`https://img.shields.io/badge/${skillMap.hono}`} alt="hono" className={cn("h-5")} />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.fastapi}`}
+                        alt="fastapi"
+                        className={cn("h-5")}
+                      />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.cloudflareWorkers}`}
+                        alt="cloudflare"
+                        className={cn("h-5")}
+                      />
+                    </ul>
+                  </li>
+                  <li className={cn("flex flex-col pr-10")}>
+                    <p className={cn("")}>입증된 시장 수요와 트랙션을 바탕으로 스케일업이 필요할 떄</p>
+                    <p className={cn("text-xs text-description mb-2.5")}>
+                      최대한 빠른 개발 및 배포 : Django / 소규모 팀과 예산 절약(가성비) : Nest.js
+                    </p>
+                    <ul className={cn("flex flex-wrap gap-y-2 gap-x-1")}>
+                      <img src={`https://img.shields.io/badge/${skillMap.nextjs}`} alt="next" className={cn("h-5")} />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.tailwindcss}`}
+                        alt="tailwindcss"
+                        className={cn("h-5")}
+                      />
+                      <img src={`https://img.shields.io/badge/${skillMap.django}`} alt="django" className={cn("h-5")} />
+                      <img src={`https://img.shields.io/badge/${skillMap.nestjs}`} alt="nestjs" className={cn("h-5")} />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.postgresql}`}
+                        alt="postgresql"
+                        className={cn("h-5")}
+                      />
+                      <img src={`https://img.shields.io/badge/${skillMap.docker}`} alt="docker" className={cn("h-5")} />
+                      <img
+                        src={`https://img.shields.io/badge/${skillMap.cloudflare}`}
+                        alt="cloudflare"
+                        className={cn("h-5")}
+                      />
+                    </ul>
+                  </li>
+                  <li className={cn("flex flex-col")}>
+                    <p className={cn("mb-1")}>이미 만들어진 프로덕트 또는 안정성/유지보수성을 염두할 떄</p>
+
+                    <ul className={cn("flex flex-wrap gap-y-2 gap-x-1")}>
+                      <img src={`https://img.shields.io/badge/${skillMap.spring}`} alt="spring" className={cn("h-5")} />
+                      <img src={`https://img.shields.io/badge/${skillMap.aws}`} alt="aws" className={cn("h-5.25")} />
+                    </ul>
+                  </li>
+                  <li className={cn("flex flex-col")}>
+                    <p className={cn("mb-0.5")}>간단한 제품 소개 페이지 및 블로그, 가이드 페이지</p>
+                    <p className={cn("text-sm text-description leading-4.5 mb-2.5")}>
+                      Framer나 Ghost, Mintlify같은 SaaS 플랫폼 사용 또는 웹사이트 빌더를
+                      <br />
+                      사용해서 빠르게 배포
+                    </p>
+                  </li>
+                </ul>
               </Section>
 
               {/* career */}

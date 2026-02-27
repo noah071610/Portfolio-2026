@@ -76,8 +76,11 @@ export default function Skills({ allLogosLoaded = true }: { allLogosLoaded: bool
         return getRandom(200, width - 200)
       }
 
+      console.log("getX", getX())
+      console.log("getY", getY())
+
       const rows = [
-        ["docker", "github", "nestjs", "nextjs"].map((v) => getCircle(getX(), getY(), iconSize, v)),
+        ["docker", "github", "nestjs", "nextjs", "spring"].map((v) => getCircle(getX(), getY(), iconSize, v)),
         [
           "aws",
           "css",
@@ -86,10 +89,11 @@ export default function Skills({ allLogosLoaded = true }: { allLogosLoaded: bool
           "mysql",
           "tailwind-css",
           "typescript",
-          "figma",
           "notion",
           "sass",
-          "slack",
+          "django",
+          "postgresql",
+          "supabase",
         ].map((v) => getRectangle(getX(), getY(), iconSize, v)),
         ["nginx", "react", "nodejs"].map((v) => getPolygon(getX(), getY(), iconSize, v)),
       ]

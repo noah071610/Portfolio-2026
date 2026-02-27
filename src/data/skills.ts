@@ -37,19 +37,25 @@ export const skillMap = {
   riverpod: "Riverpod-1967D2?logo=dart&logoColor=fff",
   appstore: "App%20Store-0D96F6?logo=appstore&logoColor=fff",
   googleTagManager: "Google%20Tag%20Manager-246FDB?logo=googletagmanager&logoColor=fff",
-}
-
-export const currentSkillMap = {
-  typescript: "TypeScript-3178C6?logo=typescript&logoColor=fff",
-  react: "React-20232a?logo=react&logoColor=61DAFB",
-  nextjs: "Next.js-000?logo=nextdotjs&logoColor=fff",
-  tailwindcss: "Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff",
-  nestjs: "NestJS-E0234E?logo=nestjs&logoColor=fff",
+  hono: "Hono-E36002?logo=hono&logoColor=fff",
+  supabase: "Supabase-3FCF8E?logo=supabase&logoColor=fff",
+  firebase: "Firebase-FFCA28?logo=firebase&logoColor=fff",
+  vercel: "Vercel-000?logo=vercel&logoColor=fff",
+  awsAmplify: "AWS%20Amplify-FF9900?logo=awsamplify&logoColor=fff",
+  awsLambda: "AWS%20Lambda-F90?logo=awslambda&logoColor=fff",
+  awsS3: "AWS%20S3-569A31?logo=amazons3&logoColor=fff",
+  awsCloudwatch: "Amazon%20CloudWatch-FF4F8B?logo=amazoncloudwatch&logoColor=fff",
+  awsRoute53: "Amazon%20Route%2053-8C4FFF?logo=amazonroute53&logoColor=fff",
   django: "Django-092E20?logo=django&logoColor=fff",
   spring: "Spring-6DB33F?logo=spring&logoColor=fff",
   postgresql: "PostgreSQL-316192?logo=postgresql&logoColor=fff",
-  docker: "Docker-2496ED?logo=docker&logoColor=fff",
   cloudflare: "Cloudflare-F38020?logo=cloudflare&logoColor=fff",
+  cloudflareWorkers: "Cloudflare_Workers-F38020?logo=cloudflare&logoColor=fff",
+  cloudflareD1: "Cloudflare_D1-F38020?logo=cloudflare&logoColor=fff",
   aws: "Amazon%20Web%20Services-232F3E?logo=amazonaws&logoColor=fff",
-  flutter: "Flutter-02569B?logo=flutter&logoColor=fff",
+  vite: "Vite-646CFF?logo=vite&logoColor=fff",
+  bun: "Bun-FF4154?logo=bun&logoColor=fff",
+  fastapi: "FastAPI-009688?logo=fastapi&logoColor=fff",
 }
+
+export const currentSkillMap = {}
