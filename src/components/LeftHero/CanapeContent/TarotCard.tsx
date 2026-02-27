@@ -5,6 +5,7 @@ import { imageAssets } from "@/data/images"
 import { cn } from "@/lib/utils"
 import { useCallback, useEffect, useRef, useState, type FC } from "react"
 import type { TConductorInstance } from "react-canvas-confetti/dist/types"
+import { useTranslation } from "react-i18next"
 import { CARD_ANIMATION_DIRECTION, CARD_CONFIG, CARD_POSITION, POSITION_SHOW_REWARD_ARR } from "./lib/constants"
 import { CanapeStep } from "./types"
 
@@ -64,6 +65,7 @@ type TarotCardProps = {
 }
 
 const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
+  const { t } = useTranslation()
   const [stage, setStage] = useState(TarotCardStage.PENDING)
   const cardAnimationRefs = Array.from({ length: 7 }, useAnimate)
   const cardBackAnimationRef = useAnimate()
@@ -168,7 +170,7 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
 
     setTimeout(() => {
       setStage(TarotCardStage.READY_TO_INTERACTION)
-      setMessage("좌우로 드래그해보세요!")
+      setMessage(t("canape_game.message_4"))
     }, 500)
   }
 
@@ -229,7 +231,7 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
     if (stage < TarotCardStage.READY_TO_INTERACTION) return
     if (stage !== TarotCardStage.DRAGGING) return
 
-    setMessage("중앙에 카드를 클릭해보세요!")
+    setMessage(t("canape_game.message_5"))
 
     const finalDeltaXRem = pxToRem(currentPosition.x - startPosition.x)
 
@@ -385,13 +387,13 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
         const timer = setTimeout(() => {
           conductor?.stop()
         }, 1000)
-        setMessage('오늘의 운세는 "지원자를 잡는 용기⚔️" 이네요')
+        setMessage(t("canape_game.message_6"))
 
         clearTimeout(timer)
       }, 1000)
 
       setTimeout(() => {
-        setMessage("어디있는지 맞춰보세요!")
+        setMessage(t("canape_game.message_7"))
         setStep(CanapeStep.SHELL_GAME)
       }, 1500 + 3500)
     } else {
@@ -412,6 +414,7 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
     setStep,
     stage,
     startPosition.x,
+    t,
   ])
 
   const handleMouseDown = useCallback(

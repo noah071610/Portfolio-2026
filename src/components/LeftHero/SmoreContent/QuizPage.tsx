@@ -4,6 +4,7 @@ import Button from "@/components/Custom/Button"
 import { quizAnimationThumbnailVariants, quizAnimationVariants } from "@/lib/animation"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import DefaultProgressBar from "./DefaultProgressBar"
 import type { Answer, Question, QuestionTransitioningType } from "./types"
 import { StageType } from "./types"
@@ -31,6 +32,7 @@ function QuizPage({
   answerStopper: React.RefObject<boolean>
   question?: Question | null
 }) {
+  const { t } = useTranslation()
   return (
     question && (
       <motion.div
@@ -110,7 +112,7 @@ function QuizPage({
                   "text-string",
                 )}
               >
-                <p className={cn("text-center")} dangerouslySetInnerHTML={{ __html: question.title }}></p>
+                <p className={cn("text-center")} dangerouslySetInnerHTML={{ __html: t(question.title) }}></p>
               </div>
             </motion.div>
             <div
@@ -128,14 +130,13 @@ function QuizPage({
                     isStable={transitioning === "stable"}
                     className={cn("w-full", transitioning !== "stable" ? "cursor-default!" : "cursor-pointer")}
                     onClick={() => {
-                      console.log("onClick", answerStopper.current, transitioning)
                       if (transitioning === "stable" && !answerStopper.current) {
                         answerStopper.current = true
                         onChangeAnswer(index)
                       }
                     }}
                   >
-                    {answer.label}
+                    {t(answer.label)}
                   </Button>
                 </motion.div>
               ))}

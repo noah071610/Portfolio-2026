@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import type { TConductorInstance } from "react-canvas-confetti/dist/types"
+import { useTranslation } from "react-i18next"
 import { BsHandIndexFill } from "react-icons/bs"
 import { CanapeStep } from "./types"
 
@@ -19,12 +20,12 @@ const images = [
 ]
 
 const IMAGE_INDEX_TO_RESULT_INDEX: Record<number, string> = {
-  0: "랜덤박스",
-  1: "5만원 상당 상품권",
-  2: "프랑스산 고급 와인",
-  3: "적립금 3만원",
-  4: "아메리카노 라지 1잔",
-  5: "춥파츄스",
+  0: "canape_game.gift.0",
+  1: "canape_game.gift.1",
+  2: "canape_game.gift.2",
+  3: "canape_game.gift.3",
+  4: "canape_game.gift.4",
+  5: "canape_game.gift.5",
 }
 
 const cx = 100
@@ -49,6 +50,7 @@ export default function Roulette({
   setStep: (step: CanapeStep) => void
   setMessage: (message: string) => void
 }) {
+  const { t } = useTranslation()
   const [isHideHand, setIsHideHand] = useState(false)
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
 
@@ -195,13 +197,13 @@ export default function Roulette({
                   const timer = setTimeout(() => {
                     conductor?.stop()
                   }, 1000)
-                  setMessage(`${IMAGE_INDEX_TO_RESULT_INDEX[resultIndex] ?? "랜덤박스"}에 당첨되셨네요 🎉`)
+                  setMessage(t("canape_game.message_2_value", { value: t(IMAGE_INDEX_TO_RESULT_INDEX[resultIndex]) }))
 
                   clearTimeout(timer)
                 }, 380 + 1300)
                 scheduleMessage(
                   () => {
-                    setMessage("오늘의 운세를 알려드릴게요! 💌")
+                    setMessage(t("canape_game.message_2"))
                     setStep(CanapeStep.TAROT_CARD)
                   },
                   380 + 1300 + 3500,
@@ -209,7 +211,7 @@ export default function Roulette({
               } else {
                 // dragY가 부족하면 상태 변경 없이 grab 상태만 해제
                 setIsOnGrab(false)
-                setMessage("좀 더 힘차게 돌려보세요! 💪")
+                setMessage(t("canape_game.message_3"))
               }
             }}
           />

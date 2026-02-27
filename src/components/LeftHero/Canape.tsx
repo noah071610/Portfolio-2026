@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import Realistic from "react-canvas-confetti/dist/presets/realistic"
 import type { TConductorInstance } from "react-canvas-confetti/dist/types"
+import { useTranslation } from "react-i18next"
 import { TypeAnimation } from "react-type-animation"
 import Roulette from "./CanapeContent/Roulette"
 import ShellGame from "./CanapeContent/ShellGame"
@@ -10,8 +11,9 @@ import TarotCard from "./CanapeContent/TarotCard"
 import { CanapeStep } from "./CanapeContent/types"
 
 export default function Canape() {
+  const { t } = useTranslation()
   const [step, setStep] = useState(CanapeStep.ROULETTE)
-  const [message, setMessage] = useState("한 번 돌려보시겠어요? 🎁")
+  const [message, setMessage] = useState(t("canape_game.message_1"))
   const [conductor, setConductor] = useState<TConductorInstance | null>(null)
   const onInit = ({ conductor }: { conductor: TConductorInstance }) => {
     setConductor(conductor)

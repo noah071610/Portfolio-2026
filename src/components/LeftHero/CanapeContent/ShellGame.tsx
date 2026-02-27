@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { motion, useAnimate, useMotionValue, useTransform, type Easing } from "framer-motion"
 import { useCallback, useEffect, useRef, useState } from "react"
 import type { TConductorInstance } from "react-canvas-confetti/dist/types"
+import { useTranslation } from "react-i18next"
 import { CanapeStep } from "./types"
 
 const getRootFontSizePx = () => {
@@ -106,6 +107,7 @@ export default function ShellGame({
   setStep: (step: CanapeStep) => void
   setMessage: (message: string) => void
 }) {
+  const { t } = useTranslation()
   const [leftCupScope, leftCupAnimate] = useAnimate()
   const [middleCupScope, middleCupAnimate] = useAnimate()
   const [rightCupScope, rightCupAnimate] = useAnimate()
@@ -273,21 +275,22 @@ export default function ShellGame({
       if (isResettingRef.current) return
 
       setStage("readyToInteraction")
-      setMessage("드래그해서 컵을 올려주세요!")
+      setMessage(t("canape_game.message_8"))
     } catch {
       console.log("Animation interrupted")
     }
   }, [
     stage,
-    leftCupAnimate,
-    leftCupScope,
-    middleCupAnimate,
-    middleCupScope,
-    rightCupAnimate,
-    rightCupScope,
     ballAnimate,
     ballScope,
+    middleCupAnimate,
+    middleCupScope,
+    leftCupAnimate,
+    leftCupScope,
+    rightCupAnimate,
+    rightCupScope,
     setMessage,
+    t,
   ])
 
   const onFinish = useCallback(
@@ -340,12 +343,12 @@ export default function ShellGame({
         const timer = setTimeout(() => {
           conductor?.stop()
         }, 1000)
-        setMessage("축하해요 아메리카노에 당첨되셨네요! ☕️")
+        setMessage(t("canape_game.message_9"))
 
         clearTimeout(timer)
       }, 1500)
       setTimeout(() => {
-        setMessage("한 번 돌려보시겠어요? 🎁")
+        setMessage(t("canape_game.message_1"))
         setStep(CanapeStep.ROULETTE)
       }, 1500 + 3500)
     },
@@ -359,6 +362,7 @@ export default function ShellGame({
       rightCupScope,
       setMessage,
       setStep,
+      t,
     ],
   )
 

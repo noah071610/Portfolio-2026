@@ -1,5 +1,6 @@
 import { XIcon } from "lucide-react"
 import { useCallback, useState } from "react"
+import { useTranslation } from "react-i18next"
 import Galaxy from "./components/Galaxy"
 import Canape from "./components/LeftHero/Canape"
 import Main from "./components/LeftHero/Main"
@@ -21,6 +22,8 @@ import useMediaQuery from "./lib/useMediaQuery"
 import { cn } from "./lib/utils"
 
 function App() {
+  const { t } = useTranslation()
+
   const isMobile = useMediaQuery("(max-width: 640px)")
   const [isOpenGalaxy, setIsOpenGalaxy] = useState(false)
   const [playNumber, setPlayNumber] = useState<number | null>(null)
@@ -129,12 +132,10 @@ function App() {
                   className={cn("w-20 h-20 rounded-full object-cover -translate-y-[30%]")}
                 />
                 <div className={cn("pt-2")}>
-                  <p className={cn("text-xl font-bold")}>장현수</p>
-                  <p className={cn("text-xs text-description mb-1")}>Full Stack Developer</p>
+                  <p className={cn("text-xl font-bold")}>{t("profile.name")}</p>
+                  <p className={cn("text-xs text-description mb-1")}>{t("profile.position")}</p>
                   <div className={cn("flex items-center gap-2")}>
-                    <p className={cn("text-sm leading-4 text-description")}>
-                      I don't care about languages. but currently falling in love with Flutter and Python
-                    </p>
+                    <p className={cn("text-sm leading-4 text-description")}>{t("profile.description")}</p>
                   </div>
                 </div>
               </div>
@@ -147,18 +148,15 @@ function App() {
                 hasNoContent={true}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>자기 소개</h3>
+                  <h3 className={cn("text-lg font-bold")}>{t("intro.title")}</h3>
                 </div>
 
                 <ol className={cn("flex flex-col gap-2.5")}>
-                  <li className={cn("text-white text-sm leading-4.5")}>
-                    왜 만들어지는지 의문을 가지고, 어떻게 만들어야 하는지 알아내는 개발자
-                  </li>
-                  <li className={cn("text-white text-sm leading-4.5")}>
-                    디자인, 프로젝트 매니징, CS 등 프로덕트 관리자로서의 넓고 얕은 영역을
-                    <br />
-                    실무에서 직접 경험하며 내가 다루는 프로덕트의 청사진을 읽어내는 개발자
-                  </li>
+                  <li className={cn("text-white text-sm leading-4.5")}>{t("intro.content_1")}</li>
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("intro.content_2") }}
+                    className={cn("text-white text-sm leading-4.5")}
+                  />
                 </ol>
               </Section>
 
@@ -170,12 +168,11 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("")}>
-                  <h3 className={cn("text-lg font-bold")}>기술 스택</h3>
-                  <p className={cn("text-sm text-description")}>
-                    어떤 언어와 프레임워크를 사용할지 그 이유가 무엇인지를 먼저 파악하고,
-                    <br />
-                    AI의 도움으로 빠르게 학습해서 적용합니다.
-                  </p>
+                  <h3 className={cn("text-lg font-bold")}>{t("skills.title")}</h3>
+                  <p
+                    dangerouslySetInnerHTML={{ __html: t("skills.subtitle") }}
+                    className={cn("text-sm text-description")}
+                  />
                 </div>
 
                 <div className={cn("w-full flex py-6")}>
@@ -184,7 +181,7 @@ function App() {
 
                 <ul className={cn("w-full flex flex-col gap-5 mb-2")}>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("mb-1")}>피봇을 염두한 빠른 MVP or Prototype 웹/앱 개발</p>
+                    <p className={cn("mb-1")}>{t("skills.category_1")}</p>
                     <ul className={cn("flex flex-wrap gap-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.react}`} alt="react" className={cn("h-5")} />
                       <img src={`https://img.shields.io/badge/${skillMap.vite}`} alt="vite" className={cn("h-5")} />
@@ -202,10 +199,8 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("")}>가볍지만 직접 세부 로직 수정이 필요한 api 서버 구축</p>
-                    <p className={cn("text-xs text-description mb-2.5")}>
-                      AI와 관련된 API 등의 기술 적극 사용시 : fastapi / 빠른 개발과 가성비 : hono
-                    </p>
+                    <p className={cn("")}>{t("skills.category_2")}</p>
+                    <p className={cn("text-xs text-description mb-2.5")}>{t("skills.category_2_desc")}</p>
                     <ul className={cn("flex flex-wrap gap-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.hono}`} alt="hono" className={cn("h-5")} />
                       <img
@@ -221,10 +216,8 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col pr-10")}>
-                    <p className={cn("")}>입증된 시장 수요와 트랙션을 바탕으로 스케일업이 필요할 떄</p>
-                    <p className={cn("text-xs text-description mb-2.5")}>
-                      최대한 빠른 개발 및 배포 : Django / 소규모 팀과 예산 절약(가성비) : Nest.js
-                    </p>
+                    <p className={cn("")}>{t("skills.category_3")}</p>
+                    <p className={cn("text-xs text-description mb-2.5")}>{t("skills.category_3_desc")}</p>
                     <ul className={cn("flex flex-wrap gap-y-2 gap-x-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.nextjs}`} alt="next" className={cn("h-5")} />
                       <img
@@ -248,7 +241,7 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("mb-1")}>이미 만들어진 프로덕트 또는 안정성/유지보수성을 염두할 떄</p>
+                    <p className={cn("mb-1")}>{t("skills.category_4")}</p>
 
                     <ul className={cn("flex flex-wrap gap-y-2 gap-x-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.spring}`} alt="spring" className={cn("h-5")} />
@@ -256,12 +249,11 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("mb-0.5")}>간단한 제품 소개 페이지 및 블로그, 가이드 페이지</p>
-                    <p className={cn("text-sm text-description leading-4.5 mb-2.5")}>
-                      Framer나 Ghost, Mintlify같은 SaaS 플랫폼 사용 또는 웹사이트 빌더를
-                      <br />
-                      사용해서 빠르게 배포
-                    </p>
+                    <p className={cn("mb-0.5")}>{t("skills.category_5")}</p>
+                    <p
+                      dangerouslySetInnerHTML={{ __html: t("skills.category_5_desc") }}
+                      className={cn("text-sm text-description leading-4.5 mb-2.5")}
+                    />
                   </li>
                 </ul>
               </Section>
@@ -274,8 +266,8 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>경력</h3>
-                  <p className={cn("text-sm text-description")}>스타트업 초기멤버로 함께 성장한 하나의 기업</p>
+                  <h3 className={cn("text-lg font-bold")}>{t("career.title")}</h3>
+                  <p className={cn("text-sm text-description")}>{t("career.subtitle")}</p>
                 </div>
 
                 <div className={cn("w-full flex flex-col gap-4")}>
@@ -285,11 +277,9 @@ function App() {
                       className={cn("box")}
                     ></div>
                     <div className={cn("flex flex-col")}>
-                      <p className={cn("text-md font-bold mb-1")}>도다마인드</p>
-                      <p className={cn("text-[0.8rem] leading-4 text-description")}>
-                        2021년 11월 ~ 2026년 2월 (4년 3개월)
-                      </p>
-                      <p className={cn("text-[0.8rem] leading-4 text-description")}>풀스택 개발</p>
+                      <p className={cn("text-md font-bold mb-1")}>{t("career.company")}</p>
+                      <p className={cn("text-[0.8rem] leading-4 text-description")}>{t("career.period")}</p>
+                      <p className={cn("text-[0.8rem] leading-4 text-description")}>{t("career.role")}</p>
                     </div>
                   </div>
                 </div>
@@ -303,18 +293,14 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>스모어 프로덕트</h3>
-                  <p className={cn("text-sm text-description")}>인터렉티브 퀴즈&설문 빌더</p>
+                  <h3 className={cn("text-lg font-bold")}>{t("smoore.title")}</h3>
+                  <p className={cn("text-sm text-description")}>{t("smoore.subtitle")}</p>
                 </div>
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
-                    <p className={cn("text-sm leading-5.5 text-description")}>
-                      블로그, 가이드 등 서브 페이지를 포함한 풀스택 개발
-                      <br />
-                      대규모 리팩토링과 테스트 코드 작성 및 타사 앱과의 api 연동 개발 경험
-                      <br />
-                      캐시카우 프로젝트, 슬랙 봇, 크롬 익스텐션 등 사이드 프로젝트 개발 다수
+                    <p className={cn("text-sm leading-5.5 text-description whitespace-pre-wrap")}>
+                      {t("smoore.description")}
                     </p>
                   </div>
 
@@ -323,17 +309,17 @@ function App() {
                       {/* head */}
                       <thead>
                         <tr>
-                          <th>분류</th>
-                          <th>설명</th>
+                          <th>{t("table.category")}</th>
+                          <th>{t("table.description")}</th>
                         </tr>
                       </thead>
                       <tbody>
                         {smooreExperienceData.map((item, index) => (
                           <tr key={`smoore-product-${index}`}>
-                            <td>{item.category}</td>
+                            <td>{item.category(t)}</td>
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
-                                <p key={`smoore-product-description-${index}-${descriptionIndex}`}>{description}</p>
+                                <p key={`smoore-product-description-${index}-${descriptionIndex}`}>{t(description)}</p>
                               ))}
                             </td>
                           </tr>
@@ -352,19 +338,20 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>카나페 프로덕트</h3>
-                  <p className={cn("text-sm text-description")}>노코드 참여형 이벤트/콘텐츠 빌더</p>
+                  <h3 className={cn("text-lg font-bold")}>{t("canape.title")}</h3>
+                  <p className={cn("text-sm text-description")}>{t("canape.subtitle")}</p>
                 </div>
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
                     <p className={cn("text-sm leading-5.5 text-description")}>
-                      · 블로그, 가이드 등 서브 페이지를 포함한 풀스택 개발 및 PM 업무 수행
+                      {t("canape.description_1")}
                       <br />
-                      · 결제 시스템과 클라우드 서버 장애 대응 및 복구 / MAU 50만~100만 트래픽 처리 경험
+                      {t("canape.description_2")}
                       <br />
-                      · 공식 지원 api sdk 개발 및 개발자용 공식문서 직접 작성 후 유지보수 경험
-                      <br />· 레거시 리팩토링 및 성능 최적화와 아름다운 애니메이션 주도 개발
+                      {t("canape.description_3")}
+                      <br />
+                      {t("canape.description_4")}
                     </p>
                   </div>
 
@@ -373,17 +360,17 @@ function App() {
                       {/* head */}
                       <thead>
                         <tr>
-                          <th>분류</th>
-                          <th>설명</th>
+                          <th>{t("table.category")}</th>
+                          <th>{t("table.description")}</th>
                         </tr>
                       </thead>
                       <tbody>
                         {canapeExperienceData.map((item, index) => (
                           <tr key={`canape-product-${index}`}>
-                            <td>{item.category}</td>
+                            <td>{item.category(t)}</td>
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
-                                <p key={`canape-product-description-${index}-${descriptionIndex}`}>{description}</p>
+                                <p key={`canape-product-description-${index}-${descriptionIndex}`}>{t(description)}</p>
                               ))}
                             </td>
                           </tr>
@@ -402,19 +389,15 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>랭킹투게더</h3>
-                  <p className={cn("text-sm text-description")}>크리에이티브 컨텐츠 공유 플랫폼</p>
+                  <h3 className={cn("text-lg font-bold")}>{t("ranking.title")}</h3>
+                  <p className={cn("text-sm text-description")}>{t("ranking.subtitle")}</p>
                 </div>
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col")}>
-                    <p className={cn("text-sm leading-5 text-description mb-0.5")}>
-                      · AI 활용 능력을 향상하고, 아이디어를 구체화하는
-                      <br />
-                      스타트업 프로세스를 1인 개발으로 경험하기 위한 공부용 개인 프로젝트
-                    </p>
+                    <p className={cn("text-sm leading-5 text-description mb-0.5")}>{t("ranking.description_1")}</p>
                     <p className={cn("text-sm leading-5.5 text-description")}>
-                      · 커뮤니티를 통해 잠깐 DAU 1000 달성 경험 <br /> · 코딩이 제일 쉽고 개발이 제일 어렵다
+                      {t("ranking.description_2")} <br /> {t("ranking.description_3")}
                     </p>
                   </div>
 
@@ -423,18 +406,18 @@ function App() {
                       {/* head */}
                       <thead>
                         <tr>
-                          <th>분류</th>
-                          <th>설명</th>
+                          <th>{t("table.category")}</th>
+                          <th>{t("table.description")}</th>
                         </tr>
                       </thead>
                       <tbody>
                         {rankingtogetherExperienceData.map((item, index) => (
                           <tr key={`rankingtogether-product-${index}`}>
-                            <td>{item.category}</td>
+                            <td>{item.category(t)}</td>
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
                                 <p key={`rankingtogether-product-description-${index}-${descriptionIndex}`}>
-                                  {description}
+                                  {t(description)}
                                 </p>
                               ))}
                             </td>
@@ -454,15 +437,16 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>외주 작업</h3>
-                  <p className={cn("text-sm text-description")}>고객사의 납품할 제품 전담 개발</p>
+                  <h3 className={cn("text-lg font-bold")}>{t("outsourcing.title")}</h3>
+                  <p className={cn("text-sm text-description")}>{t("outsourcing.subtitle")}</p>
                 </div>
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
                     <p className={cn("text-sm leading-5.5 text-description")}>
-                      · 프론트엔드 100% 개발 및 CTO와 협업해 백엔드, 배포
-                      <br />· 클라이언트 요청 사항 반영 및 개발 담당으로서 팀원과의 적극적인 협업 경험
+                      {t("outsourcing.description_1")}
+                      <br />
+                      {t("outsourcing.description_2")}
                     </p>
                   </div>
 
@@ -471,8 +455,8 @@ function App() {
                       {/* head */}
                       <thead>
                         <tr>
-                          <th>기업</th>
-                          <th>설명</th>
+                          <th>{t("table.company")}</th>
+                          <th>{t("table.description")}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -482,7 +466,7 @@ function App() {
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
                                 <p key={`outsourcing-product-description-${index}-${descriptionIndex}`}>
-                                  {description}
+                                  {t(description)}
                                 </p>
                               ))}
                             </td>
@@ -502,15 +486,16 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>스마트 단어장 어플</h3>
-                  <p className={cn("text-sm text-description")}>간단하게 단어장을 만들고 외울 수 있는 어플</p>
+                  <h3 className={cn("text-lg font-bold")}>{t("wordbook.title")}</h3>
+                  <p className={cn("text-sm text-description")}>{t("wordbook.subtitle")}</p>
                 </div>
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
                     <p className={cn("text-sm leading-5.5 text-description")}>
-                      · 플러터를 사용한 구축 및 앱스토어 배포
-                      <br />· 실제 단어장에 한땀 한땀 적은 단어장 처럼 공부 할 수 있게 다양한 기능 제공
+                      {t("wordbook.description_1")}
+                      <br />
+                      {t("wordbook.description_2")}
                     </p>
                   </div>
                 </div>
@@ -525,7 +510,7 @@ function App() {
                 setIsOpenGalaxy={setIsOpenGalaxy}
               >
                 <div className={cn("mb-4")}>
-                  <h3 className={cn("text-lg font-bold")}>자격증 / 활동</h3>
+                  <h3 className={cn("text-lg font-bold")}>{t("activity.title")}</h3>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -533,15 +518,15 @@ function App() {
                     {/* head */}
                     <thead>
                       <tr>
-                        <th>설명</th>
-                        <th>취득날짜 및 기간</th>
+                        <th>{t("table.description")}</th>
+                        <th>{t("table.date")}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {histories.map((item, index) => (
                         <tr key={`outsourcing-product-${index}`}>
-                          <td>{item.title}</td>
-                          <td>{item.date}</td>
+                          <td>{t(item.title)}</td>
+                          <td>{t(item.date)}</td>
                         </tr>
                       ))}
                     </tbody>

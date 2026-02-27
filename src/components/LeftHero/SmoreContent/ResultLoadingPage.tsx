@@ -4,9 +4,11 @@ import { EASE_OUT } from "@/lib/animation"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import { StageType } from "./types"
 
 function ResultLoadingPage({ setStage }: { setStage: (stage: StageType) => void }) {
+  const { t } = useTranslation()
   useEffect(() => {
     setTimeout(() => {
       setStage(StageType.RESULT)
@@ -48,7 +50,7 @@ function ResultLoadingPage({ setStage }: { setStage: (stage: StageType) => void 
         <div className={cn("w-20 h-7 flex items-center justify-center")}>
           <div className={cn("inline-block", "loader-primary")}></div>
         </div>
-        <span className={cn("text_13R text-string text-center")}>분석중...</span>
+        <span className={cn("text_13R text-string text-center")}>{t("event.loading")}</span>
       </motion.div>
     </div>
   )
