@@ -76,9 +76,6 @@ export default function Skills({ allLogosLoaded = true }: { allLogosLoaded: bool
         return getRandom(200, width - 200)
       }
 
-      console.log("getX", getX())
-      console.log("getY", getY())
-
       const rows = [
         ["docker", "github", "nestjs", "nextjs", "spring"].map((v) => getCircle(getX(), getY(), iconSize, v)),
         [
