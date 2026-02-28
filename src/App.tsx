@@ -24,6 +24,8 @@ import { cn } from "./lib/utils"
 function App() {
   const { t } = useTranslation()
 
+  const { i18n } = useTranslation()
+  const locale = i18n.language
   const isMobile = useMediaQuery("(max-width: 640px)")
   const [isOpenGalaxy, setIsOpenGalaxy] = useState(false)
   const [playNumber, setPlayNumber] = useState<number | null>(null)
@@ -132,16 +134,17 @@ function App() {
                   className={cn("w-20 h-20 rounded-full object-cover -translate-y-[30%]")}
                 />
                 <div className={cn("pt-2")}>
-                  <p className={cn("text-xl font-bold")}>{t("profile.name")}</p>
+                  <p className={cn("text-2xl font-bold")}>{t("profile.name")}</p>
                   <p className={cn("text-xs text-description mb-1")}>{t("profile.position")}</p>
-                  <div className={cn("flex items-center gap-2")}>
+                  <p className={cn("text-xs text-description mb-1")}>{t("profile.period")}</p>
+                  {/* <div className={cn("flex items-center gap-2")}>
                     <p className={cn("text-sm leading-4 text-description")}>{t("profile.description")}</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
               <Section
-                sectionNumber={11}
+                sectionNumber={12}
                 onClickRightSide={onClickRightSide}
                 onClickSection={onClickSection}
                 setIsOpenGalaxy={setIsOpenGalaxy}
@@ -152,10 +155,41 @@ function App() {
                 </div>
 
                 <ol className={cn("flex flex-col gap-2.5")}>
-                  <li className={cn("text-white text-sm leading-4.5")}>{t("intro.content_1")}</li>
+                  <li className={cn("text-white text-md font-semibold leading-6")}>{t("intro.content_1")}</li>
+                </ol>
+              </Section>
+
+              <Section
+                sectionNumber={11}
+                onClickRightSide={onClickRightSide}
+                onClickSection={onClickSection}
+                setIsOpenGalaxy={setIsOpenGalaxy}
+                hasNoContent={true}
+              >
+                <div className={cn("mb-4")}>
+                  <h3 className={cn("text-lg font-bold")}>{t("merit.title")}</h3>
+                </div>
+
+                <ol className={cn("flex flex-col gap-2.5")}>
                   <li
-                    dangerouslySetInnerHTML={{ __html: t("intro.content_2") }}
-                    className={cn("text-white text-sm leading-4.5")}
+                    dangerouslySetInnerHTML={{ __html: t("merit.content_1") }}
+                    className={cn("text-white text-sm leading-6")}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("merit.content_2") }}
+                    className={cn("text-white text-sm leading-5.5")}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("merit.content_3") }}
+                    className={cn("text-white text-sm leading-6")}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("merit.content_4") }}
+                    className={cn("text-white text-sm leading-6")}
+                  />
+                  <li
+                    dangerouslySetInnerHTML={{ __html: t("merit.content_5") }}
+                    className={cn("text-white text-sm leading-6")}
                   />
                 </ol>
               </Section>
@@ -181,7 +215,7 @@ function App() {
 
                 <ul className={cn("w-full flex flex-col gap-5 mb-2")}>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("mb-1")}>{t("skills.category_1")}</p>
+                    <p className={cn("mb-1 font-semibold")}>{t("skills.category_1")}</p>
                     <ul className={cn("flex flex-wrap gap-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.react}`} alt="react" className={cn("h-5")} />
                       <img src={`https://img.shields.io/badge/${skillMap.vite}`} alt="vite" className={cn("h-5")} />
@@ -199,7 +233,7 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("")}>{t("skills.category_2")}</p>
+                    <p className={cn("font-semibold")}>{t("skills.category_2")}</p>
                     <p className={cn("text-xs text-description mb-2.5")}>{t("skills.category_2_desc")}</p>
                     <ul className={cn("flex flex-wrap gap-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.hono}`} alt="hono" className={cn("h-5")} />
@@ -216,7 +250,7 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col pr-10")}>
-                    <p className={cn("")}>{t("skills.category_3")}</p>
+                    <p className={cn("font-semibold")}>{t("skills.category_3")}</p>
                     <p className={cn("text-xs text-description mb-2.5")}>{t("skills.category_3_desc")}</p>
                     <ul className={cn("flex flex-wrap gap-y-2 gap-x-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.nextjs}`} alt="next" className={cn("h-5")} />
@@ -241,7 +275,7 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("mb-1")}>{t("skills.category_4")}</p>
+                    <p className={cn("mb-1 font-semibold")}>{t("skills.category_4")}</p>
 
                     <ul className={cn("flex flex-wrap gap-y-2 gap-x-1")}>
                       <img src={`https://img.shields.io/badge/${skillMap.spring}`} alt="spring" className={cn("h-5")} />
@@ -249,7 +283,7 @@ function App() {
                     </ul>
                   </li>
                   <li className={cn("flex flex-col")}>
-                    <p className={cn("mb-0.5")}>{t("skills.category_5")}</p>
+                    <p className={cn("mb-0.5 font-semibold")}>{t("skills.category_5")}</p>
                     <p
                       dangerouslySetInnerHTML={{ __html: t("skills.category_5_desc") }}
                       className={cn("text-sm text-description leading-4.5 mb-2.5")}
@@ -299,8 +333,10 @@ function App() {
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
-                    <p className={cn("text-sm leading-5.5 text-description whitespace-pre-wrap")}>
-                      {t("smoore.description")}
+                    <p className={cn("text-sm leading-5.5 ")}>
+                      {t("smoore.description_1")}
+                      <br />
+                      {t("smoore.description_3")}
                     </p>
                   </div>
 
@@ -319,7 +355,10 @@ function App() {
                             <td>{item.category(t)}</td>
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
-                                <p key={`smoore-product-description-${index}-${descriptionIndex}`}>{t(description)}</p>
+                                <p
+                                  key={`smoore-product-description-${index}-${descriptionIndex}`}
+                                  dangerouslySetInnerHTML={{ __html: t(description) }}
+                                />
                               ))}
                             </td>
                           </tr>
@@ -344,14 +383,12 @@ function App() {
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
-                    <p className={cn("text-sm leading-5.5 text-description")}>
+                    <p className={cn("text-sm leading-5.5 ")}>
                       {t("canape.description_1")}
                       <br />
                       {t("canape.description_2")}
                       <br />
                       {t("canape.description_3")}
-                      <br />
-                      {t("canape.description_4")}
                     </p>
                   </div>
 
@@ -370,7 +407,10 @@ function App() {
                             <td>{item.category(t)}</td>
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
-                                <p key={`canape-product-description-${index}-${descriptionIndex}`}>{t(description)}</p>
+                                <p
+                                  key={`canape-product-description-${index}-${descriptionIndex}`}
+                                  dangerouslySetInnerHTML={{ __html: t(description) }}
+                                />
                               ))}
                             </td>
                           </tr>
@@ -395,10 +435,10 @@ function App() {
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col")}>
-                    <p className={cn("text-sm leading-5 text-description mb-0.5")}>{t("ranking.description_1")}</p>
-                    <p className={cn("text-sm leading-5.5 text-description")}>
-                      {t("ranking.description_2")} <br /> {t("ranking.description_3")}
-                    </p>
+                    <p
+                      dangerouslySetInnerHTML={{ __html: t("ranking.description_1") }}
+                      className={cn("text-sm leading-4.5  mb-0.5")}
+                    />
                   </div>
 
                   <div className="overflow-x-auto">
@@ -443,7 +483,7 @@ function App() {
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
-                    <p className={cn("text-sm leading-5.5 text-description")}>
+                    <p className={cn("text-sm leading-5.5 ")}>
                       {t("outsourcing.description_1")}
                       <br />
                       {t("outsourcing.description_2")}
@@ -462,7 +502,7 @@ function App() {
                       <tbody>
                         {outsourcingExperienceData.map((item, index) => (
                           <tr key={`outsourcing-product-${index}`}>
-                            <td>{item.company}</td>
+                            <td>{t(item.company)}</td>
                             <td>
                               {item.descriptions.map((description, descriptionIndex) => (
                                 <p key={`outsourcing-product-description-${index}-${descriptionIndex}`}>
@@ -492,7 +532,7 @@ function App() {
 
                 <div className={cn("w-full flex flex-col gap-4")}>
                   <div className={cn("w-full flex flex-col gap-3")}>
-                    <p className={cn("text-sm leading-5.5 text-description")}>
+                    <p className={cn("text-sm leading-5.5 ")}>
                       {t("wordbook.description_1")}
                       <br />
                       {t("wordbook.description_2")}
@@ -523,6 +563,12 @@ function App() {
                       </tr>
                     </thead>
                     <tbody>
+                      {locale === "ja" && (
+                        <tr>
+                          <td>インドク大学 放送芸能学科 入学</td>
+                          <td>2013年</td>
+                        </tr>
+                      )}
                       {histories.map((item, index) => (
                         <tr key={`outsourcing-product-${index}`}>
                           <td>{t(item.title)}</td>

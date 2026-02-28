@@ -11,83 +11,71 @@ export const portfolio_tags = {
 
 export const smooreExperienceData = [
   {
-    category: portfolio_tags.startup,
-    descriptions: ["portfolio.smoore.0", "portfolio.smoore.1"],
+    category: portfolio_tags.achieve,
+    descriptions: ["portfolio.smoore.0"],
   },
   {
-    category: portfolio_tags.startup,
+    category: portfolio_tags.achieve,
+    descriptions: ["portfolio.smoore.1"],
+  },
+  {
+    category: portfolio_tags.achieve,
     descriptions: ["portfolio.smoore.2"],
   },
   {
-    category: portfolio_tags.achieve,
+    category: portfolio_tags.experience,
     descriptions: ["portfolio.smoore.3"],
   },
   {
-    category: portfolio_tags.achieve,
+    category: portfolio_tags.experience,
     descriptions: ["portfolio.smoore.4"],
   },
   {
-    category: portfolio_tags.achieve,
+    category: portfolio_tags.experience,
     descriptions: ["portfolio.smoore.5"],
   },
   {
-    category: portfolio_tags.experience,
-    descriptions: ["portfolio.smoore.6"],
-  },
-  {
-    category: portfolio_tags.experience,
-    descriptions: ["portfolio.smoore.7"],
-  },
-  {
-    category: portfolio_tags.experience,
-    descriptions: ["portfolio.smoore.8"],
-  },
-  {
     category: portfolio_tags.etc,
-    descriptions: ["portfolio.smoore.9"],
+    descriptions: ["portfolio.smoore.6"],
   },
 ]
 
 export const canapeExperienceData = [
   {
-    category: portfolio_tags.startup,
-    descriptions: ["portfolio.canape.0", "portfolio.canape.1"],
+    category: portfolio_tags.achieve,
+    descriptions: ["portfolio.canape.0"],
   },
   {
-    category: portfolio_tags.startup,
+    category: portfolio_tags.experience,
+    descriptions: ["portfolio.canape.1"],
+  },
+  {
+    category: portfolio_tags.experience,
     descriptions: ["portfolio.canape.2"],
   },
   {
-    category: portfolio_tags.achieve,
+    category: portfolio_tags.experience,
     descriptions: ["portfolio.canape.3"],
   },
   {
-    category: portfolio_tags.experience,
+    category: portfolio_tags.etc,
     descriptions: ["portfolio.canape.4"],
-  },
-  {
-    category: portfolio_tags.experience,
-    descriptions: ["portfolio.canape.5"],
-  },
-  {
-    category: portfolio_tags.experience,
-    descriptions: ["portfolio.canape.6"],
   },
 ]
 
 export const outsourcingExperienceData = [
   {
-    company: "HIxx",
+    company: "portfolio.outsourcing.hi_name",
     badgeType: "info",
     descriptions: ["portfolio.outsourcing.hi"],
   },
   {
-    company: "노머x",
+    company: "portfolio.outsourcing.nor_name",
     badgeType: "warning",
     descriptions: ["portfolio.outsourcing.nimo"],
   },
   {
-    company: "닥터포xx",
+    company: "portfolio.outsourcing.drfor_name",
     badgeType: "error",
     descriptions: ["portfolio.outsourcing.drfor"],
   },
