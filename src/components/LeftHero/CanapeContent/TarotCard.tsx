@@ -589,16 +589,14 @@ const TarotCard: FC<TarotCardProps> = ({ conductor, setStep, setMessage }) => {
         },
       }}
       className={cn(
-        "w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pb-13",
+        "w-full max-w-[420px] overflow-hidden h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pb-13",
       )}
-      // 스와이프 이벤트 핸들러 추가
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      // 터치 스크롤 방지
       style={{
         touchAction: stage === TarotCardStage.PENDING ? undefined : "none",
         cursor:
