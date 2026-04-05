@@ -1,10 +1,9 @@
 import Galaxy from "../components/Galaxy"
 import Smore from "../components/LeftHero/Smore"
-import { cn } from "../lib/utils"
 
-function SmorePage() {
+function SmoreSection() {
   return (
-    <main className={cn("w-screen h-dvh bg-black overflow-hidden", "sm:p-3")}>
+    <>
       <Galaxy
         mouseRepulsion={false}
         mouseInteraction={false}
@@ -20,8 +19,8 @@ function SmorePage() {
         speed={1}
       />
       <Smore />
-    </main>
+    </>
   )
 }
 
-export default SmorePage
+export default SmoreSection
