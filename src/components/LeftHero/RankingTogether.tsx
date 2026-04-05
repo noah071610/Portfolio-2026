@@ -21,6 +21,25 @@ export default function RankingTogether() {
     const sync = () => {
       const nextIndex = emblaApi.selectedScrollSnap()
       setActiveIndex(nextIndex)
+
+      // 선택된 슬라이드 영상은 autoplay 보조, 나머지는 pause해서 리소스 절약
+      videoElsRef.current.forEach((el, i) => {
+        if (!el) return
+        if (i === nextIndex) {
+          try {
+            el.currentTime = 0
+            void el.play()
+          } catch {
+            // ignore
+          }
+        } else {
+          try {
+            el.pause()
+          } catch {
+            // ignore
+          }
+        }
+      })
     }
 
     emblaApi.on("select", sync)
