@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "framer-motion"
 import { useEffect, useMemo, useState } from "react"
+import ArrowBtn from "../ArrowBtn"
 
 export default function SmartWordbook() {
   const images = useMemo(
@@ -30,13 +31,22 @@ export default function SmartWordbook() {
     }
 
     emblaApi.on("select", sync)
+    emblaApi.on("reInit", sync)
     // 초기 진입 시에도 한 번 동기화
     sync()
 
     return () => {
       emblaApi.off("select", sync)
+      emblaApi.off("reInit", sync)
     }
   }, [emblaApi])
+
+  const scrollPrev = () => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }
+  const scrollNext = () => {
+    if (emblaApi) emblaApi.scrollNext()
+  }
 
   return (
     <div
@@ -94,6 +104,9 @@ export default function SmartWordbook() {
             }}
           />
           <div className={cn("w-full h-full relative", "pt-14 pb-8 px-8")}>
+            <ArrowBtn direction="left" onClick={scrollPrev} />
+            <ArrowBtn direction="right" onClick={scrollNext} />
+
             <div className="w-full h-full overflow-hidden" ref={emblaRef}>
               <div className="flex h-full touch-pan-y">
                 {images.map((src, i) => (

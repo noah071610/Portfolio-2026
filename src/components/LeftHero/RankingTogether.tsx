@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "framer-motion"
 import { useEffect, useMemo, useRef, useState } from "react"
+import ArrowBtn from "../ArrowBtn"
 
 export default function RankingTogether() {
   const videos = useMemo(() => [imageAssets.videos.vn, imageAssets.videos.play, imageAssets.videos.result], [])
@@ -20,35 +21,25 @@ export default function RankingTogether() {
     const sync = () => {
       const nextIndex = emblaApi.selectedScrollSnap()
       setActiveIndex(nextIndex)
-
-      // 선택된 슬라이드 영상은 autoplay 보조, 나머지는 pause해서 리소스 절약
-      videoElsRef.current.forEach((el, i) => {
-        if (!el) return
-        if (i === nextIndex) {
-          try {
-            el.currentTime = 0
-            void el.play()
-          } catch {
-            // ignore
-          }
-        } else {
-          try {
-            el.pause()
-          } catch {
-            // ignore
-          }
-        }
-      })
     }
 
     emblaApi.on("select", sync)
+    emblaApi.on("reInit", sync)
     // 초기 진입 시에도 한 번 동기화
     sync()
 
     return () => {
       emblaApi.off("select", sync)
+      emblaApi.off("reInit", sync)
     }
   }, [emblaApi])
+
+  const scrollPrev = () => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }
+  const scrollNext = () => {
+    if (emblaApi) emblaApi.scrollNext()
+  }
 
   return (
     <div
@@ -108,6 +99,9 @@ export default function RankingTogether() {
             }}
           />
           <div className={cn("w-full h-full relative", "pt-14 pb-8 px-8")}>
+            <ArrowBtn direction="left" onClick={scrollPrev} />
+            <ArrowBtn direction="right" onClick={scrollNext} />
+
             <div className="w-full h-full overflow-hidden" ref={emblaRef}>
               <div className="flex h-full touch-pan-y">
                 {videos.map((src, i) => (
